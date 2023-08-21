@@ -11,7 +11,7 @@
   <h1>Currency Exchange Rate Calculator</h1>
   <label for="amount">Amount:</label>
   <input type="number" id="amount" step="0.01" min="0" value="100000">
-  
+  <br>
   <label for="from">From:</label>
   <select id="from">
     <option value="THB">THB</option>
@@ -25,6 +25,7 @@
     <option value="MMK">MMK</option>
     <!-- Add more currency options here -->
   </select>
+  <br>
   
   <p id="result"></p>
 
@@ -49,7 +50,7 @@
       if (exchangeRates[fromCurrency] && exchangeRates[toCurrency]) {
         const exchangeRate = exchangeRates[toCurrency] / exchangeRates[fromCurrency];
         const convertedAmount = (amount * exchangeRate).toFixed(2);
-        resultElement.textContent = `${amount} ${fromCurrency} is approximately ${convertedAmount} ${toCurrency}`;
+        resultElement.textContent = `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
       } else {
         resultElement.textContent = "Exchange rate data not available.";
       }
