@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Exchange Rate Calculator</title>
+</head>
+<body>
+  <h1>Currency Exchange Rate Calculator</h1>
+  <label for="amount">Amount:</label>
+  <input type="number" id="amount" step="0.01" min="0">
+  
+  <label for="from">From:</label>
+  <select id="from">
+    <option value="THB">THB</option>
+    <option value="MMK"selected>MMK</option>
+    <!-- Add more currency options here -->
+  </select>
+  
+  <label for="to">To:</label>
+  <select id="to">
+    <option value="THB"selected>THB</option>
+    <option value="MMK">MMK</option>
+    <!-- Add more currency options here -->
+  </select>
+  
+  <p id="result"></p>
+
+  <script>
+    const amountInput = document.getElementById("amount");
+    const fromCurrencySelect = document.getElementById("from");
+    const toCurrencySelect = document.getElementById("to");
+    const resultElement = document.getElementById("result");
+
+    function calculate() {
+      const amount = parseFloat(amountInput.value);
+      const fromCurrency = fromCurrencySelect.value;
+      const toCurrency = toCurrencySelect.value;
+
+      // Simulated exchange rates (replace with real data)
+      const exchangeRates = {
+        THB: 1020,
+        MMK: 100000,
+        // Add more exchange rates here
+      };
+
+      if (exchangeRates[fromCurrency] && exchangeRates[toCurrency]) {
+        const exchangeRate = exchangeRates[toCurrency] / exchangeRates[fromCurrency];
+        const convertedAmount = (amount * exchangeRate).toFixed(2);
+        resultElement.textContent = `${amount} ${fromCurrency} is approximately ${convertedAmount} ${toCurrency}`;
+      } else {
+        resultElement.textContent = "Exchange rate data not available.";
+      }
+    }
+
+    amountInput.addEventListener("input", calculate);
+    fromCurrencySelect.addEventListener("change", calculate);
+    toCurrencySelect.addEventListener("change", calculate);
+  </script>
+</body>
+</html>
